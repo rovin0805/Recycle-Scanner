@@ -51,7 +51,7 @@ export default ({ goToWhere }) => {
       {sessions.map((session, index) => (
         <Container
           key={index}
-          onPress={() => goToWhere("Session", { title: session })}
+          onPress={() => goToWhere("Section", { title: session })}
         >
           <ImageWrapper>
             <Image

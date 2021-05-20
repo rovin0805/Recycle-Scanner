@@ -9,6 +9,7 @@ export default ({}) => {
   });
   const [hasPermission, setHasPermission] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -20,7 +21,7 @@ export default ({}) => {
         getCurrentCoords();
       }
     })();
-  }, []);
+  }, [refresh]);
 
   const getCurrentCoords = async () => {
     let {
@@ -41,6 +42,7 @@ export default ({}) => {
       location={location}
       loading={loading}
       hasPermission={hasPermission}
+      setRefresh={setRefresh}
     />
   );
 };

@@ -15,6 +15,7 @@ export default ({
       console.log(barcode);
       const res = await getRecyclingInfo(barcode);
       console.log("res", res);
+      //  null 일 때 렌더 처리
       setLoading(false);
     } catch (error) {
       console.log("get recycling info error", error);
