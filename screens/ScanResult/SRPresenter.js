@@ -2,6 +2,8 @@ import React from "react";
 import { Image } from "react-native";
 import styled from "styled-components/native";
 import Recycle from "../../assets/recycle2.png";
+import Loader from "../../components/Loader";
+import NotFound from "../../assets/error-404.png";
 
 const Container = styled.ScrollView`
   flex: 1;
@@ -10,7 +12,7 @@ const Container = styled.ScrollView`
 `;
 
 const ImageWrapper = styled.View`
-  border: 1.5px solid lightgray;
+  /* border: 1.5px solid lightgray; */
   border-radius: 50px;
   padding: 10px;
   margin: 0 auto;
@@ -36,12 +38,24 @@ const Description = styled.Text`
   color: #282828;
 `;
 
-export default ({ loading, data }) => {
-  return (
+const Warning = styled.Text`
+  text-align: center;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: bold;
+  color: crimson;
+`;
+
+export default ({ loading, data, notFound }) => {
+  const { name, detail } = data;
+
+  return loading ? (
+    <Loader />
+  ) : (
     <Container>
       <ImageWrapper>
         <Image
-          source={Recycle}
+          source={notFound ? NotFound : Recycle}
           style={{
             width: 100,
             height: 100,
@@ -49,34 +63,20 @@ export default ({ loading, data }) => {
         />
       </ImageWrapper>
       <TextWrapper>
-        <Block>
-          <Title>제품명</Title>
-          <Description>새콤달콤</Description>
-        </Block>
-        <Block>
-          <Title>분리배출 방법</Title>
-          <Description>
-            safsadf asdfsadf sadfsafasfs asdfasf asdfsafsadfas safsadfsafsaf
-            safsadfasdf asdfsadfsadfsaf sdfas asdfsadfsdfsdf sdfasds dfsfd
-            dfsfdf dfsfdf fasdf asdfsadfsadfsaf sdfas asdfsadfsdfsdf sdfasds
-            dfsfd dfsfdf dfsfdf fasdf asdfsadfsadfsaf sdfas asdfsadfsdfsdf
-            sdfasds dfsfd dfsfdf dfsfdf fasdf asdfsadfsadfsaf sdfas
-            asdfsadfsdfsdf sdfasds dfsfd dfsfdf dfsfdf fasdf asdfsadfsadfsaf
-            sdfas asdfsadfsdfsdf sdfasds dfsfd dfsfdf dfsfdf fasdf
-            asdfsadfsadfsaf sdfas asdfsadfsdfsdf sdfasds dfsfd dfsfdf dfsfdf
-            fasdf asdfsadfsadfsaf sdfas asdfsadfsdfsdf sdfasds dfsfd dfsfdf
-            dfsfdf fasdf asdfsadfsadfsaf sdfas asdfsadfsdfsdf sdfasds dfsfd
-            dfsfdf dfsfdf fasdf asdfsadfsadfsaf sdfas asdfsadfsdfsdf sdfasds
-            dfsfd dfsfdf dfsfdf fasdf asdfsadfsadfsaf sdfas asdfsadfsdfsdf
-            sdfasds dfsfd dfsfdf dfsfdf sdfas asdfsadfsdfsdf sdfasds dfsfd
-            dfsfdf dfsfdf fasdf asdfsadfsadfsaf sdfas asdfsadfsdfsdf sdfasds
-            dfsfd dfsfdf dfsfdf fasdf asdfsadfsadfsaf sdfas asdfsadfsdfsdf
-            sdfasds dfsfd dfsfdf dfsfdf fasdf asdfsadfsadfsaf sdfas
-            asdfsadfsdfsdf sdfasds dfsfd dfsfdf dfsfdf fasdf asdfsadfsadfsaf
-            sdfas asdfsadfsdfsdf sdfasds dfsfd dfsfdf dfsfdf fasdf
-            asdfsadfsadfsaf sdfas asdfsadfsdfsdf sdfasds dfsfd dfsfdf dfsfdf
-          </Description>
-        </Block>
+        {notFound ? (
+          <Warning>해당 정보가 아직 준비되지 않았습니다!</Warning>
+        ) : (
+          <>
+            <Block>
+              <Title>제품명</Title>
+              <Description>{name}</Description>
+            </Block>
+            <Block>
+              <Title>분리배출 방법</Title>
+              <Description>{detail}</Description>
+            </Block>
+          </>
+        )}
       </TextWrapper>
     </Container>
   );

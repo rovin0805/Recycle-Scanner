@@ -12,4 +12,10 @@ export const getRecyclingInfo = async (barcode) => {
   return data;
 };
 
-export const getTrashBinLocations = async () => {};
+export const getTrashBinInfo = async (address) => {
+  let req = { dong: address };
+  const { data } = await api.post(`/trash/${address}`, JSON.stringify(req), {
+    headers: { "Content-Type": `application/json` },
+  });
+  return data;
+};

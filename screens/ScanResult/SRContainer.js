@@ -8,14 +8,15 @@ export default ({
   },
 }) => {
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState();
+  const [data, setData] = useState({ name: "", detail: "" });
+  const [notFound, setNotFound] = useState(false);
 
   const sendBarcode = async () => {
     try {
-      console.log(barcode);
       const res = await getRecyclingInfo(barcode);
-      console.log("res", res);
-      //  null 일 때 렌더 처리
+      console.log(barcode, res[0]);
+      if (res[0] === undefined) setNotFound(true);
+      else setData(res[0]);
       setLoading(false);
     } catch (error) {
       console.log("get recycling info error", error);
@@ -26,5 +27,5 @@ export default ({
     sendBarcode();
   }, []);
 
-  return <SRPresenter loading={loading} />;
+  return <SRPresenter loading={loading} data={data} notFound={notFound} />;
 };

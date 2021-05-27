@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import GlobalStyles from "../../components/GlobalStyles";
 import Background from "../../assets/background.jpg";
 import Barcode from "../../assets/barcode.png";
+import Question from "../../assets/question.png";
 import Carousel from "../../components/Carousel";
 
 const { width: deviceWidth, height: deviceHeight } = Dimensions.get("window");
@@ -35,10 +36,26 @@ const BtnText = styled.Text`
   font-size: ${(props) => props.fontsize}px;
 `;
 
-export default ({ goToWhere }) => {
+const QTouch = styled.TouchableOpacity`
+  position: absolute;
+  top: 8%;
+  right: 4%;
+  z-index: 1;
+`;
+
+export default ({ goToWhere, PopUpAlert }) => {
   return (
     <SafeAreaView style={GlobalStyles.AndroidSafeArea}>
       <Container>
+        <QTouch onPress={PopUpAlert}>
+          <Image
+            source={Question}
+            style={{
+              width: 50,
+              height: 50,
+            }}
+          />
+        </QTouch>
         <Image
           source={Background}
           style={{

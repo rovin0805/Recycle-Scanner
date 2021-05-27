@@ -6,7 +6,9 @@ import Icon1 from "../assets/can.png";
 import Icon2 from "../assets/bottle.png";
 import Icon3 from "../assets/plastic.png";
 import Icon4 from "../assets/bag.png";
-import Icon5 from "../assets/styroform.png";
+import Icon5 from "../assets/fishbone.png";
+import Icon6 from "../assets/mask.png";
+import Icon7 from "../assets/etc.jpg";
 
 const Container = styled.TouchableOpacity`
   flex-direction: column;
@@ -19,7 +21,7 @@ const ImageWrapper = styled.View`
   width: 100%;
   background-color: #fff;
   border-radius: 40px;
-  padding: 10px;
+  padding: 13px;
   margin-bottom: 8px;
 `;
 
@@ -34,18 +36,19 @@ export default ({ goToWhere }) => {
     "금속캔, 고철",
     "유리, 병류",
     "플라스틱 용기류",
-    "비닐류",
-    "스티로폼",
+    "합성수지류",
+    "음식물",
+    "마스크",
+    "기타",
   ];
 
-  const importName = [Icon0, Icon1, Icon2, Icon3, Icon4, Icon5];
+  const importName = [Icon0, Icon1, Icon2, Icon3, Icon4, Icon5, Icon6, Icon7];
 
   return (
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
       scrollEventThrottle={10}
-      pagingEnabled={true}
       style={{ backgroundColor: "white" }}
     >
       {sessions.map((session, index) => (

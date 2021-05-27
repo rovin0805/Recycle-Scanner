@@ -13,5 +13,5 @@ export default ({
     });
   }, [navigation]);
 
-  return <SectionPresenter />;
+  return <SectionPresenter title={title} />;
 };

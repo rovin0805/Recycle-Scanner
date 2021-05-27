@@ -32,7 +32,13 @@ const BtnText = styled.Text`
   font-size: 20px;
 `;
 
-export default ({ location, loading, hasPermission, setRefresh }) => {
+export default ({
+  location,
+  loading,
+  hasPermission,
+  setRefresh,
+  binCoords,
+}) => {
   const { latitude, longitude } = location;
 
   return loading ? (
@@ -44,17 +50,30 @@ export default ({ location, loading, hasPermission, setRefresh }) => {
           <MapView
             style={{ width, height }}
             initialRegion={{
-              latitude,
-              longitude,
+              latitude: 37.567986415251,
+              longitude: 127.03721964556,
               latitudeDelta: 0.04,
               longitudeDelta: 0.04,
             }}
           >
             <MapView.Marker
               title="내 위치"
-              coordinate={{ latitude, longitude }}
-              //   pinColor={"#1e90ff"}
+              coordinate={{
+                latitude: 37.567986415251,
+                longitude: 127.03721964556,
+              }}
             />
+            {binCoords.length > 0 &&
+              binCoords.map((item, index) => (
+                <MapView.Marker
+                  key={index}
+                  coordinate={{
+                    latitude: item.latitude,
+                    longitude: item.longitude,
+                  }}
+                  pinColor={"#1e90ff"}
+                />
+              ))}
           </MapView>
           <Button onPress={() => setRefresh(Date.now())}>
             <BtnText>내 위치 갱신</BtnText>
