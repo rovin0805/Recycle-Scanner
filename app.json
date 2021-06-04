@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/cloud.png",
     "splash": {
-      "image": "./assets/background.jpg",
+      "image": "./assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },

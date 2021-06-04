@@ -38,6 +38,7 @@ export default ({
   hasPermission,
   setRefresh,
   binCoords,
+  binInfo,
 }) => {
   const { latitude, longitude } = location;
 
@@ -72,6 +73,8 @@ export default ({
                     longitude: item.longitude,
                   }}
                   pinColor={"#1e90ff"}
+                  title={binInfo[index].bin}
+                  description={`${binInfo[index].location} ${binInfo[index].location_setting}`}
                 />
               ))}
           </MapView>

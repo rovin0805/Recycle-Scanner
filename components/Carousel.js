@@ -31,7 +31,7 @@ const Title = styled.Text`
 `;
 
 export default ({ goToWhere }) => {
-  const sessions = [
+  const sections = [
     "종이류, 종이팩",
     "금속캔, 고철",
     "유리, 병류",
@@ -51,10 +51,10 @@ export default ({ goToWhere }) => {
       scrollEventThrottle={10}
       style={{ backgroundColor: "white" }}
     >
-      {sessions.map((session, index) => (
+      {sections.map((section, index) => (
         <Container
           key={index}
-          onPress={() => goToWhere("Section", { title: session })}
+          onPress={() => goToWhere("Section", { title: section })}
         >
           <ImageWrapper>
             <Image
@@ -65,7 +65,7 @@ export default ({ goToWhere }) => {
               }}
             />
           </ImageWrapper>
-          <Title>{session}</Title>
+          <Title>{section}</Title>
         </Container>
       ))}
     </ScrollView>

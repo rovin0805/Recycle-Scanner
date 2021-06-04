@@ -57,31 +57,37 @@ export default ({}) => {
   const sendAddressInfo = async (address) => {
     try {
       const res = await getTrashBinInfo(address);
-      setBinInfo(res);
-
-      let count = 0;
-      const producer = () => {
-        if (count < res.length) {
-          count++;
-          return delayValue(count, 1000);
-        } else {
-          return null;
-        }
-      };
-
-      const concurrency = 100;
-
-      const pool = new PromisePool(producer, concurrency);
-
-      console.log("start--------------------");
+      if (res.length > 0) {
+        setBinInfo(res);
+        res.map((item) =>
+          setBinCoords((prev) => [
+            ...prev,
+            {
+              longitude: item.longitude,
+              latitude: item.latitude,
+            },
+          ])
+        );
+      }
       setLoading(false);
-      const poolPromise = pool.start();
-
-      poolPromise
-        .then(() => {
-          console.log("then");
-        })
-        .catch((err) => console.error(err));
+      // let count = 0;
+      // const producer = () => {
+      //   if (count < res.length) {
+      //     count++;
+      //     return delayValue(count, 1000);
+      //   } else {
+      //     return null;
+      //   }
+      // };
+      // const concurrency = 100;
+      // const pool = new PromisePool(producer, concurrency);
+      // setLoading(false);
+      // const poolPromise = pool.start();
+      // poolPromise
+      //   .then(() => {
+      //     console.log("then");
+      //   })
+      //   .catch((err) => console.error(err));
 
       // const { results, errors } = await PromisePool.for(res)
       //   .withConcurrency(1)
@@ -102,7 +108,6 @@ export default ({}) => {
   };
 
   const getCoords = (obj, count) => {
-    console.log(count);
     return new Promise((res, rej) => {
       Location.geocodeAsync(obj.location)
         .then((loc) => {
@@ -121,9 +126,8 @@ export default ({}) => {
 
   const delayValue = function (value, time) {
     return new Promise(function (resolve, reject) {
-      console.log("Resolving " + value + " in " + time + " ms");
+      // console.log("Resolving " + value + " in " + time + " ms");
       setTimeout(function () {
-        console.log("Resolving: " + value);
         resolve(value);
       }, time);
     });
@@ -136,6 +140,7 @@ export default ({}) => {
       hasPermission={hasPermission}
       setRefresh={setRefresh}
       binCoords={binCoords}
+      binInfo={binInfo}
     />
   );
 };

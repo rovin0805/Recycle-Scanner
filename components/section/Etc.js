@@ -3,10 +3,7 @@ import { Image } from "react-native";
 import {
   width,
   Container,
-  RowWrapper,
   Block,
-  Title,
-  Line,
   Kind,
   Description,
   DesTitle,
