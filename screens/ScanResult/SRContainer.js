@@ -15,7 +15,7 @@ export default ({
 
   const sendBarcode = async () => {
     try {
-      const res = await getRecyclingInfo("8809063071154");
+      const res = await getRecyclingInfo(barcode);
       if (res[0] === undefined) setNotFound(true);
       else setData(res[0]);
       setKindArr(res[0].kind.split(","));
