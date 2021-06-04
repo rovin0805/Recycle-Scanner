@@ -5,6 +5,7 @@ import GlobalStyles from "../../components/GlobalStyles";
 import Background from "../../assets/background.jpg";
 import Barcode from "../../assets/barcode.png";
 import Question from "../../assets/question.png";
+import Bulb from "../../assets/bulbpng.png";
 import Detail from "../../assets/detail.jpg";
 import Carousel from "../../components/Carousel";
 
@@ -29,11 +30,11 @@ const Bubble = styled.View`
 `;
 
 const BubbleText = styled.Text`
-  color: #696969;
+  color: black;
   font-size: 12px;
   font-weight: bold;
-  text-align: center;
   margin-bottom: 5px;
+  margin-left: 5px;
 `;
 
 const Button = styled.TouchableOpacity`
@@ -53,10 +54,17 @@ const BtnText = styled.Text`
   font-size: ${(props) => props.fontsize}px;
 `;
 
-const QTouch = styled.TouchableOpacity`
+const BulbIcon = styled.TouchableOpacity`
   position: absolute;
-  top: 8%;
-  right: 4%;
+  top: 6%;
+  right: 3%;
+  z-index: 1;
+`;
+
+const QIcon = styled.TouchableOpacity`
+  position: absolute;
+  top: 3%;
+  right: 3%;
   z-index: 1;
 `;
 
@@ -83,15 +91,15 @@ export default ({ goToWhere, PopUpAlert }) => {
   return (
     <SafeAreaView style={GlobalStyles.AndroidSafeArea}>
       <Container>
-        <QTouch onPress={PopUpAlert}>
+        <BulbIcon onPress={() => goToWhere("Intro")}>
           <Image
-            source={Question}
+            source={Bulb}
             style={{
               width: 40,
               height: 40,
             }}
           />
-        </QTouch>
+        </BulbIcon>
         <Image
           source={Background}
           style={{
@@ -102,6 +110,15 @@ export default ({ goToWhere, PopUpAlert }) => {
         />
         <Wrapper>
           <Bubble>
+            <QIcon onPress={PopUpAlert}>
+              <Image
+                source={Question}
+                style={{
+                  width: 27,
+                  height: 27,
+                }}
+              />
+            </QIcon>
             <BubbleText>
               제품의 바코드를 스캔하여 분리배출 정보를 얻을 수 있어요
             </BubbleText>

@@ -9,6 +9,7 @@ import Scan from "../screens/Scan";
 import ScanResult from "../screens/ScanResult";
 import Section from "../screens/Section";
 import Map from "../screens/Map";
+import Intro from "../screens/Introduction.js";
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,11 @@ export default () => {
         name="Map"
         component={Map}
         options={{ title: "내 주변 쓰레기통 위치" }}
+      />
+      <Stack.Screen
+        name="Intro"
+        component={Intro}
+        options={{ title: "출품작 소개" }}
       />
     </Stack.Navigator>
   );
