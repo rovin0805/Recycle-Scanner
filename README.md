@@ -8,8 +8,8 @@
 
 ### 팀원
 
-<b>Front-end : 최은정</b><br>
-<b>Back-end : 김가은</b>
+<b>Frontend : 최은정</b><br>
+<b>Backend : 김가은</b>
 
 ### 개발 스택
 
